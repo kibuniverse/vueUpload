@@ -1,32 +1,51 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
     <UploadBox :addFile="addFile" />
-    
+    <ShowWaitCalculateFiles :waitCalculateFiles='waitCalculateFiles' />
+
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import UploadBox from "./components/Upload.vue";
-
+import UploadTool from 'upload-tool'
+import ShowWaitCalculateFiles from './components/ShowWaitCalculateFiles'
 export default {
   name: "App",
   components: {
-    HelloWorld,
     UploadBox,
+    ShowWaitCalculateFiles,
   },
   data () {
     return {
-      waitCalculated: []
+      waitCalculateFiles: [],
+      waitUploadFile: [],
+      UploadedFiles: [],
+      uploadTool: new UploadTool({
+        concurrency: 3,
+        chunkSize: 3*1024*1024,
+        updateWaitCalculateFile: this.updateWaitCalculateFile,
+        updateWaitUploadFile: this.updateWaitUploadFile,
+        updateUploadedFiles: this.updateUploadedFiles
+      })
     }
   },
   methods: {
     addFile(files) {
-      for(let i = 0, len = files.length; i < len; i++) {
-        this.waitCalculated.push(files[i])
-      }
+      this.uploadTool.updateWaitCalculateFile(files)
+    },
+    updateWaitCalculateFile(waitCalculateFiles) {
+      console.log(waitCalculateFiles)
+      this.waitCalculateFiles = waitCalculateFiles
+    },
+    updateWaitUploadFile(waitUploadFiles) {
+      this.waitUploadFile = waitUploadFiles
+      console.log(waitUploadFiles)
+    },
+    updateUploadedFiles(uploadedFiles) {
+      this.uploadedFiles = uploadedFiles
+      console.log(uploadedFiles)
     }
   },
 };

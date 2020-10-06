@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "spark-md5": "^3.0.1",
+    "upload-tool": "^1.0.4",
     "vue": "^3.0.0-0"
   },
   "devDependencies": {

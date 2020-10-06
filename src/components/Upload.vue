@@ -15,7 +15,6 @@ export default {
   },
   methods: {
     changed(e) {
-      console.log(e.target.files);
       if (this.addFile) {
         this.addFile(e.target.files);
       }

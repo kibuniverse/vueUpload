@@ -1,24 +1,5 @@
 # vue-upload
 
-## Project setup
-```
-yarn install
-```
+基于上传组件的vue实现
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[上传组件地址](https://github.com/kibuniverse/upload-tool)
